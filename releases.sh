@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # releases.sh
-
+# My other repositories: https://github.com/carls0n/
 # Bash script to check for current release of OpenBSD. Download latest OpenBSD release in ISO or IMG format.
 # OpenBSD releases are usually released in May and November.
 # A list of current mirrors is located at https://www.openbsd.org/ftp.html
