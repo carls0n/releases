@@ -53,7 +53,6 @@ fi
 
 installed=$(uname -r)
 version=$(bc <<< "$installed+0.1")
-#max=$(bc <<< "$version-0.3")
 
 arch="$(uname -p)"
 format=$(printf install$version | sed 's/\.//g'; printf .$image)
@@ -62,11 +61,9 @@ function check_current {
 type -P curl 1>/dev/null
 [ "$?" -ne 0 ] && echo "curl is required to check for new releases." && exit
 if [[ $current == 1 && $download != 1 ]]; then
-#if (( $(bc <<< "$version < $max") )); then printf "Version $version is not available\n"
 if curl -s --ipv$prefer https://$mirror/pub/OpenBSD/$version/$arch/ | grep -q $(printf $name$version | sed 's/\.//g'; printf .$image)
 then
 printf "OpenBSD version $version is ready for download\n"
-#else printf "You have the latest version ($(uname -sr))\n"
 else printf "OpenBSD version $version is not available\n"
 fi
 fi
