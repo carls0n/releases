@@ -42,7 +42,7 @@ function get_args {
    done
 }
 
-prefer="6"
+prefer="4"
 name="install"
 
 if [[ $(uname -s) != "OpenBSD" ]]
