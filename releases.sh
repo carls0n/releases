@@ -20,7 +20,7 @@ echo "-i  installation image - override default img with iso"
 echo "-d  download the selected installation image"
 echo "-m  use mirror i.e mirrors.mit.edu or mirrors.ocf.berkeley.edu"
 echo "-r  resume interrupted download"
-echo "-p  prefer ipv4 [ 6 is default, 4 is optional ]"
+echo "-p  prefer ipv4 [ 4 is default, 6 is optional ]"
 echo "-n  image name - change default to \"miniroot\" or \"floppy\""
 }
 
