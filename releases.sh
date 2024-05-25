@@ -7,7 +7,7 @@
 # A list of current mirrors is located at https://www.openbsd.org/ftp.html
 
 mirror=cdn.openbsd.org # default mirror
-arch=$(uname -p) # default - use this computers architecture
+arch=$(uname -m) # default - use this computers architecture
 image=img # default installation image - img for writing bootable USB sticks.
 
 function usage {
@@ -54,7 +54,7 @@ fi
 installed=$(uname -r)
 version=$(bc <<< "$installed+0.1")
 
-arch="$(uname -p)"
+arch="$(uname -m)"
 format=$(printf install$version | sed 's/\.//g'; printf .$image)
 
 function check_current {
