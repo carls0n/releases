@@ -7,17 +7,18 @@
 # OpenBSD releases are usually released in May and November.
 # A list of current mirrors is located at https://www.openbsd.org/ftp.html
 
+# Impoprtant. Debian based Linux users need to download signify-openbsd
+
 mirror=cdn.openbsd.org # default mirror
 
 function usage {
 echo "script to check for and download new OpenBSD releases"
-echo "Usage: releases [-advimrpn] [options]"
+echo "Usage: releases [-advimpn] [options]"
 echo "-v  OpenBSD version number"
 echo "-a  architecture - i.e i386, arm64"
 echo "-i  installation image - override default img with iso"
 echo "-d  download the selected installation image"
 echo "-m  use mirror i.e mirrors.mit.edu or mirrors.ocf.berkeley.edu"
-echo "-r  resume interrupted download"
 echo "-p  prefer ipv6 [ "4" is default, "6" is optional ]"
 echo "-n  image name - change default to \"miniroot\" or \"floppy\""
 }
