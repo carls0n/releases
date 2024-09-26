@@ -7,6 +7,9 @@
 # OpenBSD releases are usually released in May and November.
 # A list of current mirrors is located at https://www.openbsd.org/ftp.html
 
+# Important! Debian based users need to  download signify.
+# apt install signify-openbsd
+
 mirror=cdn.openbsd.org # default mirror
 
 function usage {
@@ -18,7 +21,7 @@ echo "-i  installation image - override default img with iso"
 echo "-d  download the selected installation image"
 echo "-m  use mirror i.e mirrors.mit.edu or mirrors.ocf.berkeley.edu"
 echo "-r  resume interrupted download"
-echo "-p  prefer ipv6 [ \"4\" is default, \"6\" is optional ]"
+echo "-p  prefer ipv6 [ "4" is default, "6" is optional ]"
 echo "-n  image name - change default to \"miniroot\" or \"floppy\""
 }
 
@@ -80,7 +83,11 @@ function download {
    then
    wget -q --show-progress https://$mirror/pub/OpenBSD/$version/$arch/$format
    wget -q https://$mirror/pub/OpenBSD/$version/$arch/SHA256.sig
-   if [[ $(uname -s) != "OpenBSD" ]]; then echo signature can only be verified on OpenBSD && exit
+   if [[ $(uname -s) != "OpenBSD" ]]; then
+   wget -q https://cdn.openbsd.org/pub/OpenBSD/$version/openbsd-$filename-base.pub
+   signify-openbsd -Cp openbsd-$filename-base.pub -x SHA256.sig $format
+   rm openbsd-$filename-base.pub
+   rm SHA256.sig
    elif [[ $(uname -s) == "OpenBSD" ]]; then
    signify -Cp /etc/signify/openbsd-$filename-base.pub -x SHA256.sig $format
    rm SHA256.sig   
