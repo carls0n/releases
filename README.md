@@ -5,7 +5,8 @@
 * Use IPv4 or IPv6 to download installation images<br>
 * Automatically checks signature and download integrity upon finished download<br>
 * Resume interrupted downloads.
-* A seperate script (getbsd.sh) for Linux users!<br><br>
+* A seperate script (getbsd.sh) for Linux users!<br>
+* Debian based users need to download signify-openbsd<br><br>
 
 Visit me at my main website <a href="https://openbsd.mywire.org">OpenBSD Tutorials</a>
 #
