@@ -8,4 +8,4 @@
 * A seperate script (getbsd.sh) for Linux users!<br><br>
 
 Visit me at my main website <a href="https://openbsd.mywire.org">OpenBSD Tutorials</a>
-
+#
