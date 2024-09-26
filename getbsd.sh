@@ -7,9 +7,6 @@
 # OpenBSD releases are usually released in May and November.
 # A list of current mirrors is located at https://www.openbsd.org/ftp.html
 
-# Important! Debian based users need to  download signify.
-# apt install signify-openbsd
-
 mirror=cdn.openbsd.org # default mirror
 
 function usage {
@@ -26,20 +23,19 @@ echo "-n  image name - change default to \"miniroot\" or \"floppy\""
 }
 
 function get_args {
-   [ $# -eq 0 ] && usage && exit
-   while getopts ":da:i:v:rm:n:hp:" arg; do
-   case $arg in
-   d) download=1;;
-   p) prefer="$OPTARG";;
-   a) arch="$OPTARG";;
-   i) image="$OPTARG" ;;
-   v) version="$OPTARG";;
-   r) resume=1;;
-   m) mirror="$OPTARG";;
-   h) usage && exit;;
-   n) name="$OPTARG";;
-   esac
-   done
+[ $# -eq 0 ] && usage && exit
+while getopts ":da:i:v:m:n:hp:" arg; do
+case $arg in
+d) download=1;;
+p) prefer="$OPTARG";;
+a) arch="$OPTARG";;
+i) image="$OPTARG" ;;
+v) version="$OPTARG";;
+m) mirror="$OPTARG";;
+h) usage && exit;;
+n) name="$OPTARG";;
+esac
+done
 }
 
 prefer="4"
@@ -47,7 +43,7 @@ prefer="4"
 function check_release {
 type -P curl 1>/dev/null
 [ "$?" -ne 0 ] && echo "curl is required to check for new releases." && exit
-if [[ $download != 1 ]]; then
+if [[ $download != 1 ]]; then  
 if curl -s --ipv$prefer https://$mirror/pub/OpenBSD/$version/$arch/ | grep -q $(printf $name$version | sed 's/\.//g'; printf .$image)
 then
 printf "OpenBSD version $version is ready for download\n"
@@ -57,46 +53,45 @@ fi
 }
 
 function check_flags {
-   if [ -z "$arch" ]; then echo use the -a flag and architecture
-   exit; fi
-   if [ -z "$version" ]; then echo use the -v flag adnd the version
-   exit; fi
- if [ -z "$image" ]; then echo use the -i for image \(img or iso\)
-   exit; fi
- if [ -z "$name" ]; then echo use the -n for image name. i.e, install,  miniroot
-   exit; fi
+if [ -z "$arch" ]; then echo use the -a flag and architecture
+exit; fi
+if [ -z "$version" ]; then echo use the -v flag adnd the version
+exit; fi
+if [ -z "$image" ]; then echo use the -i for image \(img or iso\)
+exit; fi
+if [ -z "$name" ]; then echo use the -n for image name. i.e, install,  miniroot
+exit; fi
 }
 
-function download {   
-   type -P wget 1>/dev/null
-   [ "$?" -ne 0 ] && echo "wget is required to download images." && exit
-   format=$(printf $name$version | sed 's/\.//g'; printf .$image)
-   filename=$(echo $format | sed "s/$name//" | cut -d . -f 1)
-   if [[ $resume == 1 ]] ; then
-   if curl -s --ipv$prefer https://$mirror/pub/OpenBSD/$version/$arch/ | grep -q $format
-   then
-   wget -q -c --show-progress https://$mirror/pub/OpenBSD/$version/$arch/$format
-   wget -q -c https://$mirror/pub/OpenBSD/$version/$arch/SHA256.sig
-   signify -Cp /etc/signify/openbsd-$filename-base.pub -x SHA256.sig $format; fi
-   elif [[ $download == "1" ]]; then
-   if curl -s https://$mirror/pub/OpenBSD/$version/$arch/ | grep -q $format
-   then
-   wget -q --show-progress https://$mirror/pub/OpenBSD/$version/$arch/$format
-   wget -q https://$mirror/pub/OpenBSD/$version/$arch/SHA256.sig
-   if [[ $(uname -s) != "OpenBSD" ]]; then
-   wget -q https://cdn.openbsd.org/pub/OpenBSD/$version/openbsd-$filename-base.pub
-   signify-openbsd -Cp openbsd-$filename-base.pub -x SHA256.sig $format
-   rm openbsd-$filename-base.pub
-   rm SHA256.sig
-   elif [[ $(uname -s) == "OpenBSD" ]]; then
-   signify -Cp /etc/signify/openbsd-$filename-base.pub -x SHA256.sig $format
-   rm SHA256.sig   
-   else printf "Version $version is not available\n"
+
+ function download {   
+type -P wget 1>/dev/null
+[ "$?" -ne 0 ] && echo "wget is required to download images." && exit
+if [[ $(uname -s) != "OpenBSD" ]];then
+type -P signify-openbsd 1>/dev/null
+[ "$?" -ne 0 ] && echo "signify-opensbd is required to verify signatures" && exit
+format=$(printf $name$version | sed 's/\.//g'; printf .$image)
+filename=$(echo $format | sed "s/$name//" | cut -d . -f 1)
+if [[ $download == "1" ]]; then
+if curl -s https://$mirror/pub/OpenBSD/$version/$arch/ | grep -q $format
+then
+wget -q -c --show-progress https://$mirror/pub/OpenBSD/$version/$arch/$format
+wget -q -c https://$mirror/pub/OpenBSD/$version/$arch/SHA256.sig
+if [[ $(uname -s) != "OpenBSD" ]]; then
+wget -q -c https://cdn.openbsd.org/pub/OpenBSD/$version/openbsd-$filename-base.pub
+signify-openbsd -Cp openbsd-$filename-base.pub -x SHA256.sig $format
+rm openbsd-$filename-base.pub
+rm SHA256.sig
+elif [[ $(uname -s) == "OpenBSD" ]]; then
+signify -Cp /etc/signify/openbsd-$filename-base.pub -x SHA256.sig $format
+rm SHA256.sig
+fi
 fi
 fi
 fi
 exit
 }
+
 
 get_args $@
 check_flags
