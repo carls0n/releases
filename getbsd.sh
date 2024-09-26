@@ -13,7 +13,7 @@ mirror=cdn.openbsd.org # default mirror
 
 function usage {
 echo "script to check for and download new OpenBSD releases"
-echo "Usage: releases [-advimpn] [options]"
+echo "Usage: ./getbsd.sh [-advimpn] [options]"
 echo "-v  OpenBSD version number"
 echo "-a  architecture - i.e i386, arm64"
 echo "-i  installation image - override default img with iso"
@@ -79,7 +79,7 @@ then
 wget -q -c --show-progress https://$mirror/pub/OpenBSD/$version/$arch/$format
 wget -q -c https://$mirror/pub/OpenBSD/$version/$arch/SHA256.sig
 if [[ $(uname -s) != "OpenBSD" ]]; then
-wget -q -c https://cdn.openbsd.org/pub/OpenBSD/$version/openbsd-$filename-base.pub
+wget -q -c https://$mirror/pub/OpenBSD/$version/openbsd-$filename-base.pub
 signify-openbsd -Cp openbsd-$filename-base.pub -x SHA256.sig $format
 rm openbsd-$filename-base.pub
 rm SHA256.sig
