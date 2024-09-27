@@ -45,10 +45,12 @@ function check_release {
 type -P curl 1>/dev/null
 [ "$?" -ne 0 ] && echo "curl is required to check for new releases." && exit
 if [[ $download != 1 ]]; then  
+format=$(printf $name$version | sed 's/\.//g'; printf .$image)
+filename=$(echo $format | sed "s/$name//" | cut -d . -f 1)
 if curl -s --ipv$prefer https://$mirror/pub/OpenBSD/$version/$arch/ | grep -q $(printf $name$version | sed 's/\.//g'; printf .$image)
 then
-printf "OpenBSD version $version is ready for download\n"
-else printf "OpenBSD version $version is not available\n"
+printf "OpenBSD $format is ready for download\n"
+else printf  "OpenBSD $format is not available\n"
 fi
 fi
 }
