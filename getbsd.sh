@@ -49,8 +49,8 @@ format=$(printf $name$version | sed 's/\.//g'; printf .$image)
 filename=$(echo $format | sed "s/$name//" | cut -d . -f 1)
 if curl -s --ipv$prefer https://$mirror/pub/OpenBSD/$version/$arch/ | grep -q $(printf $name$version | sed 's/\.//g'; printf .$image)
 then
-printf "OpenBSD $format is ready for download\n"
-else printf  "OpenBSD $format is not available\n"
+printf "OpenBSD $format for $arch is ready for download\n"
+else printf  "OpenBSD $format for $arch is not available\n"
 fi
 fi
 }
@@ -89,7 +89,7 @@ elif [[ $(uname -s) == "OpenBSD" ]]; then
 signify -Cp /etc/signify/openbsd-$filename-base.pub -x SHA256.sig $format
 rm SHA256.sig
 fi
-else printf  "OpenBSD $format is not available\n"
+else printf  "OpenBSD $format for $arch is not available\n"
 fi
 fi
 fi
