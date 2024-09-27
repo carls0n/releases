@@ -56,7 +56,7 @@ fi
 function check_flags {
 if [ -z "$arch" ]; then echo use the -a flag and architecture
 exit; fi
-if [ -z "$version" ]; then echo use the -v flag adnd the version
+if [ -z "$version" ]; then echo use the -v flag and the version
 exit; fi
 if [ -z "$image" ]; then echo use the -i for image \(img or iso\)
 exit; fi
@@ -87,7 +87,7 @@ elif [[ $(uname -s) == "OpenBSD" ]]; then
 signify -Cp /etc/signify/openbsd-$filename-base.pub -x SHA256.sig $format
 rm SHA256.sig
 fi
-else printf  "OpenBSD version $version is not available\n"
+else printf  "OpenBSD $format is not available\n"
 fi
 fi
 fi
