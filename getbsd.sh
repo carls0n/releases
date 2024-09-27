@@ -15,12 +15,12 @@ function usage {
 echo "script to check for and download new OpenBSD releases"
 echo "Usage: ./getbsd.sh [-advimpn] [options]"
 echo "-v  OpenBSD version number"
-echo "-a  architecture - i.e i386, arm64"
-echo "-i  installation image - override default img with iso"
-echo "-d  download the selected installation image"
+echo "-a  architecture - i.e i386, arm64, amd64"
+echo "-i  installation image - img or iso"
+echo "-n  image name - \"install\", \"miniroot\" or \"floppy\""
 echo "-m  use mirror i.e mirrors.mit.edu or mirrors.ocf.berkeley.edu"
-echo "-p  prefer ipv6 [ "4" is default, "6" is optional ]"
-echo "-n  image name - change default to \"miniroot\" or \"floppy\""
+echo "-p  prefer ipv6 [ \"4\" is default, \"6\" is optional ]"
+echo "-d  download the selected installation image"
 }
 
 function get_args {
@@ -87,6 +87,7 @@ elif [[ $(uname -s) == "OpenBSD" ]]; then
 signify -Cp /etc/signify/openbsd-$filename-base.pub -x SHA256.sig $format
 rm SHA256.sig
 fi
+else printf  "OpenBSD version $version is not available\n"
 fi
 fi
 fi
