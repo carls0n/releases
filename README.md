@@ -7,6 +7,4 @@
 * Resume interrupted downloads.
 * A seperate script (getbsd.sh) for Linux users!<br>
 * Debian based users need to download signify-openbsd<br><br>
-
-Visit me at my main website <a href="https://openbsd.mywire.org">OpenBSD Tutorials</a>
 #
