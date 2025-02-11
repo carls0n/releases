@@ -7,8 +7,6 @@
 * Resume interrupted downloads.
 * A seperate script (getbsd.sh) for Linux users!<br>
 * Debian based users need to download signify-openbsd<br><br>
-#
-
 
 https://github.com/user-attachments/assets/ea160992-b615-4f43-86b4-3e5b40a5f31e
 
