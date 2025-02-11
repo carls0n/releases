@@ -2,7 +2,6 @@
 
 # releases.sh
 # My other repositories: https://github.com/carls0n/
-# My website: https://openbsd.mywire.org
 # Bash script to check for current release of OpenBSD. Download latest OpenBSD release in ISO or IMG format.
 # OpenBSD releases are usually released in May and November.
 # A list of current mirrors is located at https://www.openbsd.org/ftp.html
