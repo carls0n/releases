@@ -1,12 +1,17 @@
-# 
-* Check for and download latest OpenBSD installation image<br>
-* Optionally, download any other available installation image<br>
-* Supports the use of mirrors<br>
-* Use IPv4 or IPv6 to download installation images<br>
-* Automatically checks signature and download integrity upon finished download<br>
-* Resume interrupted downloads.
-* A seperate script (getbsd.sh) for Linux users!<br>
-* Debian based users need to download signify-openbsd<br><br>
+# releases.sh<br>
+A bash based script to check for and download latest OpenBSD installation images
+using command line.
 
+<h4>Key Features of script</h4>
+
+[+] Check for and download latest OpenBSD installation image<br><br>
+[+] Optionally, download any other available installation image<br><br>
+[+] Supports the use of mirrors<br><br>
+[+] Use IPv4 or IPv6 to download installation images<br><br>
+[+] Automatically checks signature and download integrity upon finished download<br><br>
+[+] Resume interrupted downloads.<br><br>
+[+] A seperate script (getbsd.sh) for Linux users!<br><br>
+[+] Debian based users need to install signify-openbsd
+#
 https://github.com/user-attachments/assets/670eaf15-95bc-4710-98d4-7f518866d372
 
