@@ -8,7 +8,7 @@ using command line.
 [+] Optionally, download any other available installation image<br><br>
 [+] Supports the use of mirrors<br><br>
 [+] Use IPv4 or IPv6 to download installation images<br><br>
-[+] Automatically checks signature and download integrity upon finished download<br><br>
+[+] Automatically checks signature and file integrity upon completing download<br><br>
 [+] Resume interrupted downloads.<br><br>
 [+] A seperate script (getbsd.sh) for Linux users!<br><br>
 [+] Debian based users need to install signify-openbsd
