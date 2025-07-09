@@ -72,7 +72,7 @@ type -P wget 1>/dev/null
 [ "$?" -ne 0 ] && echo "wget is required to download images." && exit
 if [[ $(uname -s) != "OpenBSD" ]];then
 type -P signify-openbsd 1>/dev/null
-[ "$?" -ne 0 ] && echo "signify-opensbd is required to verify signatures" && exit
+[ "$?" -ne 0 ] && echo "signify-openbsd is required to verify signatures" && exit
 format=$(printf $name$version | sed 's/\.//g'; printf .$image)
 filename=$(echo $format | sed "s/$name//" | cut -d . -f 1)
 if [[ $download == "1" ]]; then
