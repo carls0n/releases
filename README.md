@@ -11,7 +11,7 @@ using command line.
 [+] Automatically checks signature and file integrity upon completing download<br><br>
 [+] Resume interrupted downloads.<br><br>
 [+] A seperate script (getbsd.sh) for Linux users!<br><br>
-[+] Debian based users need to install signify-openbsd. In Linux mint you may need to set software sources in update manager to deafault to install openbsd-signify
+[+] Debian based users need to install signify-openbsd. In Linux mint you may need to set software sources in update manager to default to install openbsd-signify
 #
 https://github.com/user-attachments/assets/670eaf15-95bc-4710-98d4-7f518866d372
 
