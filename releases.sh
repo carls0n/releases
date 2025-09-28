@@ -1,10 +1,22 @@
 #!/usr/bin/env bash
 
-# releases.sh
+# releases.sh - OpenBSD releases download script 2023 Marc Carlson
 # My other repositories: https://github.com/carls0n/
 # Bash script to check for current release of OpenBSD. Download latest OpenBSD release in ISO or IMG format.
 # OpenBSD releases are usually released in May and November.
 # A list of current mirrors is located at https://www.openbsd.org/ftp.html
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see https://www.gnu.org/licenses/
 
 mirror=cdn.openbsd.org # default mirror
 arch=$(uname -m) # default - use this computers architecture
