@@ -13,4 +13,3 @@ using command line.
 [+] A seperate script (getbsd.sh) for Linux users!<br><br>
 [+] Debian based users need to install signify-openbsd. In Linux mint you may need to set software sources in update manager to default to install openbsd-signify
 #
-
